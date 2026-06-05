@@ -1,3 +1,8 @@
+"use client"
+import axios from "axios";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 
 export const authStyles = {
@@ -5,16 +10,39 @@ export const authStyles = {
     button:"w-full bg-white text-black font-semibold py-4 rounded-lg hover:opacity-90 transition cursor-pointer"
 }
 export default function SetupUsernamePage() {
+   const [username, setUsername] = useState("");
+   const [loading,setLoading] = useState(false);
+   const router = useRouter();
+    const handleSubmit = async (e: React.SubmitEvent) => {
+        e.preventDefault();
+        if(!username.trim()){
+            toast.error("Username field is required");
+            return;
+        } 
+        try {
+            await axios.post("/api/auth/setup-username", {username});
+            toast.success("Username selected successfully");
+            router.replace("/feed");
+        }catch (error) {
+            if(axios.isAxiosError(error)){
+                toast.error(error.response?.data?.error);
+            }
+        }finally {            
+            setLoading(false);
+        }
+    }
+
   return (
     <main className="min-h-screen flex items-center justify-center px-4">
         <div className="w-full max-w-md rounded-2xl p-6 space-y-6">
             <h1 className="text-2xl font-semibold text-white text-center">
                 Setup Username
             </h1>
-            <form action="" className="space-y-4">
-                <input type="email" placeholder="Choose your username" className={authStyles.input}/>
-                <button className={authStyles.button}>Login</button>
-
+            <form action="" className="space-y-4" onSubmit={handleSubmit}>
+                <input type="text" placeholder="Choose your username" className={authStyles.input} value={username} onChange={(e) => setUsername(e.target.value)} />
+                <button className={authStyles.button} disabled={loading}>
+                    {loading ? "Setting up..." : "Setup Username"}
+                </button>
             </form>
 
            

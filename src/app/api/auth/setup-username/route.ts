@@ -24,7 +24,7 @@ export async function POST(req: Request) {
             where: {id: currentUser?.id},
             data: {username: formattedUsername}
         })
-
+        return NextResponse.json({success: true, user: updatedUser});
     } catch (error) {
         console.error("Error setting up username:", error);
         return new Response(JSON.stringify({ message: "Failed to set up username" }), { status: 500 });

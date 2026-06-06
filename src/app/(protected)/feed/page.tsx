@@ -1,7 +1,10 @@
-import React from 'react'
+import Container from '@/src/components/layouts/Container'
+
 
 export default function FeedsPage() {
   return (
-    <div className="text-white"></div>
+    <Container title='For you' showBackButton>
+        <div className='text-white'>Feed page</div>
+    </Container>
   )
 }

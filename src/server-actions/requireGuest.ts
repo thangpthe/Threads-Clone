@@ -4,7 +4,7 @@ import getCurrentUser from "./getCurrentUser";
 
 export async function requireGuest() {
     const currentUser = await getCurrentUser();
-    if(currentUser?.id){
+    if(!currentUser?.id){
         return null;
     }
     const user = await prisma.user.findUnique({

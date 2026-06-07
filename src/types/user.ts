@@ -9,7 +9,7 @@ export interface User {
     isFolowing?: boolean
     _count: {
         posts: number,
-        followers:number,
+        followers: number,
         following: number
     }
 }

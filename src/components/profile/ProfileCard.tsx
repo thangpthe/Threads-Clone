@@ -5,10 +5,13 @@ import { User } from "@/src/types/user";
 
 interface ProfileCardProps{
     userProfile: User,
+    currentUserId: string
 }
 
-export default function ProfileCard({userProfile}: ProfileCardProps) {
+export default function ProfileCard({userProfile,currentUserId}: ProfileCardProps) {
     const {openEditProfile} = useModalStore();
+
+    const isOwnProfile = userProfile.id === currentUserId;
     
     return (
     <>
@@ -24,7 +27,15 @@ export default function ProfileCard({userProfile}: ProfileCardProps) {
                 <p>{userProfile._count.following} Following</p>
                 <p>{userProfile._count.posts} Posts</p>
             </div>
-            <button onClick={openEditProfile} className="w-full py-1 border border-border text-white/90 rounded-lg cursor-pointer">Edit Profile</button>
+
+            {userProfile.bio ? (
+                <p className="text-white/80 my-6 text-sm">{userProfile.bio}</p>
+            ): isOwnProfile ? (
+                <p className="text-blue-500 text-sm my-4 cursor-pointer" onClick={openEditProfile}>Add bio</p>
+            ): null}
+            {isOwnProfile ? <button onClick={openEditProfile} className="w-full py-1 border border-border text-white/90 rounded-lg cursor-pointer">Edit Profile</button>:
+            <button className="w-full py-1 border border-border text-white/90 rounded-lg cursor-pointer">Follow</button>
+            }
     </>
     )
 }

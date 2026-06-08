@@ -2,6 +2,7 @@
 import { useModalStore } from "@/src/store/useModalStore";
 import Avatar from "../ui/Avatar";
 import { User } from "@/src/types/user";
+import FollowButton from "../ui/FollowButton";
 
 interface ProfileCardProps{
     userProfile: User,
@@ -34,7 +35,7 @@ export default function ProfileCard({userProfile,currentUserId}: ProfileCardProp
                 <p className="text-blue-500 text-sm my-4 cursor-pointer" onClick={openEditProfile}>Add bio</p>
             ): null}
             {isOwnProfile ? <button onClick={openEditProfile} className="w-full py-1 border border-border text-white/90 rounded-lg cursor-pointer">Edit Profile</button>:
-            <button className="w-full py-1 border border-border text-white/90 rounded-lg cursor-pointer">Follow</button>
+            <FollowButton userId={userProfile.id} isFollowing={userProfile.isFolowing}/>
             }
     </>
     )

@@ -3,6 +3,7 @@ import { Heart, Home, LogOut, LucideIcon, Plus, Search, User } from "lucide-reac
 import Link from "next/link";
 import Logo from "./Logo";
 import { usePathname } from "next/navigation";
+import { useModalStore } from "@/src/store/useModalStore";
 
 interface NavItem{
     href?: string;
@@ -20,6 +21,7 @@ export const navItems: NavItem[] = [
 
 export default function Sidebar() {
     const pathname = usePathname();
+    const {openCreatePost} = useModalStore();
     return (
         <aside className="hidden md:flex items-center justify-between flex-col w-20 fixed z-100 top-0 left-0 h-screen">
             <Logo/>
@@ -29,7 +31,7 @@ export default function Sidebar() {
                     const Icon = item.icon;
                     if(item.isAction){
                         return (
-                            <button className="p-4  bg-surface text-white rounded-md hover:opacity-80 transition" key={index}>
+                            <button onClick={openCreatePost} className="p-4  bg-surface text-white rounded-md hover:opacity-80 transition" key={index}>
                                 <Icon size={30}/>
                             </button>
                     )

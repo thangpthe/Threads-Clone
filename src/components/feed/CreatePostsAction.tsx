@@ -16,7 +16,7 @@ export default function CreatePostsAction() {
           
         </Link>
         <div className="w-full flex justify-between items-center">
-            <p onClick={openCreatePost} className="text-text-muted text-sm cursor-pointer">What&pos;s new?</p>
+            <p onClick={openCreatePost} className="text-text-muted text-sm cursor-pointer">What's new?</p>
             <PostButton title="Post" onClick={openCreatePost}/>
           </div>
     </div>

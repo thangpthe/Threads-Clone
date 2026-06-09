@@ -15,7 +15,7 @@ export default function Container({
 }: ContainerLayoutProps) {
     const router = useRouter();
   return (
-    <section className="flex justify-center">
+    <section className="flex justify-center mb-15">
         <div className="bg-surface border-border p-4 rounded-3xl w-full max-w-xl mx-2">
             <header className="fixed top-0 left-0 w-full h-12 bg-background flex gap-4 items-center justify-center z-50">
                 {showBackButton && (

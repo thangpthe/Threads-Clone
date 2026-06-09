@@ -4,6 +4,7 @@ import Link from "next/link";
 import moment from "moment";
 import { Ellipsis } from "lucide-react";
 import Image from "next/image";
+import PostActions from "../general/PostActions";
 
 interface FeedProps{
     post:Post,
@@ -23,8 +24,8 @@ export default function Feed({post,action}:FeedProps) {
                     {moment(post.createdAt).fromNow()}
                 </span>
 
-                <Ellipsis size={18} className="text text-text-muted cursor-pointer"/>
             </div>
+            <Ellipsis size={18} className="text text-text-muted cursor-pointer"/>
 
             
         </div>
@@ -36,6 +37,8 @@ export default function Feed({post,action}:FeedProps) {
                 </div>
             )}
         </Link>
+        {action && <PostActions post={post} />}
+        
     </div>
   )
 }

@@ -28,7 +28,7 @@ export default function Feeds() {
     <Container title='For you'>
         <CreatePostsAction/>
         {posts.map((post)=> {
-          return <Feed post={post} key={post.id}/>
+          return <Feed post={post} key={post.id} action/>
         })}
 
         <div ref={ref} className="h-10 flex items-center justify-center">

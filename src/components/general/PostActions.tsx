@@ -1,3 +1,4 @@
+"use client"
 import { useModalStore } from "@/src/store/useModalStore";
 import { usePostStore } from "@/src/store/usePostStore";
 import { Post } from "@/src/types/post";

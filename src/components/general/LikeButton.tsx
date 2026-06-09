@@ -21,8 +21,8 @@ export default function LikeButton({postId,initialCount,initialLike}:LikeButtonP
             const res = await axios.post("/api/posts/like",{
                 postId
             });
-            const likeState = res.data.liked;
-            setLiked(liked);
+            const likeState = res.data.like;
+            setLiked(!liked);
             setCount((prev) => likeState ? prev + 1: prev -1);
         } catch (error) {
             console.error(error);

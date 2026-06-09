@@ -17,7 +17,7 @@ async function PostLoader({postId}:{postId:string}){
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <Avatar imgSrc={post.author.image || "/images/avatar.png"} alt={post.author.name||"avatar"} width={40} height={40}/>
-                    <Link href={post.author.username || ""}>{post.author.username}</Link>
+                    <Link href={post.author.username || ""} className='text-white'>{post.author.username}</Link>
 
 
                     <span className="text-text-muted text-sm">

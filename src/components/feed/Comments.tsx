@@ -19,7 +19,7 @@ export default async function Comments({postId}:{postId:string}) {
                     <div className="flex items-center justify-between py-4">
                         <div className="flex items-center gap-2">
                             <Avatar height={40} width={40} alt="avatar" imgSrc={comment.author.image || "/images/avatar.png"}/>
-                            <Link href={`/${comment.author.username}`}>{comment.author.username}</Link>
+                            <Link href={`/${comment.author.username}`} className="text-white">{comment.author.username}</Link>
                             <span className="text-sm text-text-muted">{moment(comment.createdAt).fromNow()}</span>
                         </div>
                     </div>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Logo from "./Logo";
 import { usePathname } from "next/navigation";
 import { useModalStore } from "@/src/store/useModalStore";
+import { authClient } from "@/src/lib/auth-client";
 
 interface NavItem{
     href?: string;
@@ -22,6 +23,9 @@ export const navItems: NavItem[] = [
 export default function Sidebar() {
     const pathname = usePathname();
     const {openCreatePost} = useModalStore();
+    const handleLogout = async () => {
+        await authClient.signOut();
+    }
     return (
         <aside className="hidden md:flex items-center justify-between flex-col w-20 fixed z-100 top-0 left-0 h-screen">
             <Logo/>
@@ -47,7 +51,7 @@ export default function Sidebar() {
                 })}   
             </div>
 
-            <button className="mb-6 p-4 rounded-md text-text-muted hover:bg-surface/50 hover:text-white transition cursor-pointer">
+            <button className="mb-6 p-4 rounded-md text-text-muted hover:bg-surface/50 hover:text-white transition cursor-pointer" onClick={handleLogout}>
                 <LogOut size={30}/>
             </button>
         </aside>

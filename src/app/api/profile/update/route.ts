@@ -13,7 +13,7 @@ export async function PATCH(req: Request) {
         const username = formData.get("username") as string;
         const name = formData.get("name") as string;
         const bio = formData.get("bio") as string;
-        const avatarFile = formData.get("iamge") as File | null;
+        const avatarFile = formData.get("image") as File | null;
         let imageData: null | CloudinaryUploadResult = null;
 
         if(avatarFile && avatarFile.size > 0){

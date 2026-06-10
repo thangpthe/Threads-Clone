@@ -4,9 +4,10 @@ import Container from '@/src/components/layouts/Container';
 import LoadingSpinner from '@/src/components/loading/LoadingSpinner';
 import Avatar from '@/src/components/ui/Avatar';
 import { getPostById } from '@/src/server-actions/getPostById';
-import { Ellipsis, Link } from 'lucide-react';
+import { Ellipsis} from 'lucide-react';
 import moment from 'moment';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Suspense } from 'react';
 
 async function PostLoader({postId}:{postId:string}){

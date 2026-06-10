@@ -10,6 +10,7 @@ export const auth = betterAuth({
     }),
     emailAndPassword: { 
     enabled: true, 
+    requireEmailVerification:false
   }, 
   trustedOrigins: [
     process.env.BETTER_AUTH_URL as string

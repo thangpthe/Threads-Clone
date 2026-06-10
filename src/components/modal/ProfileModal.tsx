@@ -72,7 +72,7 @@ export default function ProfileModal({userProfile}:ProfileModalProps) {
 
                     <label className="text-sm text-blue-500 cursor-pointer hover:underline">
                         Change Avatar
-                        <input  className="hidden" type="files" accept="images/*" onChange={handleAvatarChange}/>
+                        <input  className="hidden" type="file" accept="image/*" onChange={handleAvatarChange}/>
                     </label>
                 </div>
                 <div className="flex flex-col gap-1">

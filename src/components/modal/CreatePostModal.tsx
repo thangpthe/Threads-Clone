@@ -84,7 +84,7 @@ export default function CreatePostModal() {
             <button onClick={() => fileInputRef.current?.click()}>
               <ImageIcon className="cursor-pointer" size={20}/>
             </button>
-            <input onChange={handleImageChange} type="file" accept="images/*"hidden/>
+            <input onChange={handleImageChange} type="file" accept="images/*"hidden ref={fileInputRef}/>
             <button onClick={() => setShowEmojiPicker((prev) => !prev)}>
               <Smile className="cursor-pointer" size={20}/>
             </button>

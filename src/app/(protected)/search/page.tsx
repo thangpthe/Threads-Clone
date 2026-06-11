@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 
 export default function SearchPage() {
-    const[query,setQuery] = useState();
+    const[query,setQuery] = useState<string>();
     const [users,setUsers] = useState<User[]>([]);
     const [loading,setLoading] = useState(false);
 
@@ -45,7 +45,7 @@ export default function SearchPage() {
     <Container title ="Search">
         <div className="flex items-center gap-3 py-3 px-4 bg-background border border-border rounded-xl">
             <Search size={18} className="text-text-muted"/>
-            <input type="text" value={query} onChange={(e) => e.target.value} placeholder="Search" className="w-full bg-transparent text-sm text-white placeholder:text-text-muted focus:outline-none"/>
+            <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search" className="w-full bg-transparent text-sm text-white placeholder:text-text-muted focus:outline-none"/>
         </div>
         <h2 className="font-semibold text-text-muted my-4">{query ? "Search results": "Follow Suggestions"}</h2>
         {loading && <LoadingSpinner/>}

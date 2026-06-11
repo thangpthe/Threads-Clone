@@ -5,6 +5,9 @@ import Logo from "./Logo";
 import { usePathname } from "next/navigation";
 import { useModalStore } from "@/src/store/useModalStore";
 import { authClient } from "@/src/lib/auth-client";
+import { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 interface NavItem{
     href?: string;
@@ -22,10 +25,34 @@ export const navItems: NavItem[] = [
 
 export default function Sidebar() {
     const pathname = usePathname();
-    const {openCreatePost} = useModalStore();
-    const handleLogout = async () => {
-        await authClient.signOut();
-    }
+    const {openCreatePost,closeAll} = useModalStore();
+    const [loggingOut, setLoggingOut] = useState(false);
+    const queryClient = useQueryClient();
+     const handleLogout = async () => {
+        if (loggingOut) return;
+        setLoggingOut(true);
+        closeAll();
+ 
+        await authClient.signOut({
+            fetchOptions: {
+                onSuccess: () => {
+                    queryClient.clear();
+                    toast.success("Logout successful", {
+                        duration: 1500,
+                    });
+                    // Đợi toast hiện xong rồi redirect
+                    setTimeout(() => {
+                        window.location.replace("/login");
+                    }, 1500);
+                },
+                onError: () => {
+                    setLoggingOut(false);
+                    toast.error("Logout failed. Please try again.");
+                }
+            }
+        });
+    };
+ 
     return (
         <aside className="hidden md:flex items-center justify-between flex-col w-20 fixed z-100 top-0 left-0 h-screen">
             <Logo/>
